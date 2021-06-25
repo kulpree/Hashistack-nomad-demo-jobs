@@ -1,0 +1,15 @@
+name: Deploy Nomad Job
+on: [push, pull_request, workflow_dispatch]
+jobs:
+  deploy:
+    name: Http-echo-dynamic app Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v1
+
+      - name: Deploy with Nomad
+        uses: qazz92/nomad-deploy
+        with:
+          address: https://nomad.thedevopsguru.net/
+          job: http-echo-dynamic-service.nomad
